@@ -24,25 +24,45 @@
     </header>
 
     <section class="parse-login margen" hidden>
-        <section class="section-form">
+        <section class="section-form flotar-izquierda">
             <h2>Ingresar</h2>
             <form id="login-form">
                 <div class="form-group">
-                    <input type="text" id="username" name="username" placeholder="Usuario">
+                    <input type="text" id="login-username" name="login-username" placeholder="Usuario">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Contraseña">
+                    <input type="password" id="login-password" name="login-password" placeholder="Contraseña">
                 </div>
                 <div class="form-group">
                     <button type="submit">Ingresar</button>
                 </div>
             </form>
         </section>
+
+        <section class="section-signup flotar-derecha">
+            <h2>Registrarse</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="text" id="signup-username" name="signup-username" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signup-email" name="signup-email" placeholder="E-Mail">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signup-password" name="signup-password" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Registrarse</button>
+                </div>
+            </form>
+        </section>
     </section>
 
     <section class="parse-body margen" hidden>
-
-        <a class="boton" id="salir">Salir</a>
+        
+        <div class="form-group">
+            <a class="boton" id="salir">Salir</a>
+        </div>
 
         <section class="section-form">
             <h2>Agregar Evento</h2>
