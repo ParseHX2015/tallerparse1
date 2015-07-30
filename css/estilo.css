@@ -1,0 +1,198 @@
+/* Referencia por TAG */
+header {
+
+}
+
+/* Referencia por Clase */
+.header {
+
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0;
+}
+
+/* Referencia por ID */
+#encabezado {
+    height: 300px;
+    background-image: url('../img/desk.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: table;
+    width: 100%;
+}
+
+hgroup {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+}
+
+.charla {
+    position: relative;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.margen {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.intro-texto {
+    padding-top: 50px;
+    margin-bottom: 20px;
+}
+
+.linea-horizontal {
+    width: 100%;
+    height: 3px;
+    background-color: #f4f4f4;
+    margin-bottom: 50px;
+    margin-top: 25px;
+}
+
+.texto-charla {
+    width: 30%;
+    margin-top: 10%;
+}
+
+.charla-descripcion {
+    margin-bottom: 30px;
+}
+
+.flotar-izquierda {
+    float: left;
+    clear: left;
+}
+
+.flyer-alto {
+    height: 400px;
+}
+
+.flyer-contenedor {
+    overflow: hidden;
+    width: 500px;
+    right: 0px;
+    position: absolute;
+    display: inline-block;
+}
+
+.flyer {
+    width: 550px;
+}
+
+a.boton {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 8px 20px;
+    margin-bottom: 50px;
+    transition-property: background;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+}
+
+a.boton:hover {
+    background-color: black;
+    color: white;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer {
+    background-color: #333;
+    padding-top: 60px;
+    height: 100px;
+    background-image: url('../img/geometric.png');
+    background-attachment: fixed;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.flotar-derecha {
+    float: right;
+    clear: right;
+}
+
+.texto-derecha {
+    text-align: right;
+}
+
+.flyer-contenedor-derecho {
+    overflow: hidden;
+    left: -150px;
+    position: absolute;
+}
+
+.parse-body {
+    font-family: 'Lato', sans-serif;
+}
+
+.form-group {
+    padding: 5px;
+}
+
+.form-group input {
+    border: 2px solid black;
+    padding: 5px;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
+.form-group button {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 8px 20px;
+    margin-bottom: 50px;
+    transition-property: background, color;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+}
+
+.form-group button:hover {
+    background-color: black;
+    color: white;
+}
+
+.section-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.section-table table td,
+.section-table table th {
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.section-table table th {
+    background-color: black;
+    color: white;
+}
