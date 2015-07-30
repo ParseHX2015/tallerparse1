@@ -68,19 +68,19 @@
             <h2>Agregar Evento</h2>
             <form id="evento-form">
                 <div class="form-group">
-                    <input type="text" id="nombre-evento" name="nombre-evento" placeholder="Nombre Evento">
+                    <input type="text" id="nombre-evento" name="nombre-evento" placeholder="Nombre Evento" required>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" id="nombre-disertante" name="nombre-disertante" placeholder="Nombres Disertantes" rows="4"></textarea>
+                    <textarea type="text" id="nombre-disertante" name="nombre-disertante" placeholder="Nombres Disertantes" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="number" id="horas" name="horas" placeholder="Hora del Evento">
+                    <input type="date" id="fecha-evento" name="fecha-evento" placeholder="Fecha del Evento" required>
                 </div>
                 <div class="form-group">
-                    <input type="number" id="horas" name="horas" placeholder="Duración">
+                    <input type="number" id="duracion-evento" name="duracion-evento" placeholder="Duración (hs)" step="1" required>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" id="descripcion" placeholder="Descripción del Evento/Taller" rows="4"></textarea>
+                    <textarea type="text" id="descripcion-evento" name="descripcion-evento" placeholder="Descripción del Evento/Taller" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit">Enviar</button>
@@ -89,15 +89,7 @@
         </section>
 
         <section class="section-table">
-            <table>
-                <tr>
-                    <th>Nombre Evento</th>
-                    <th>Nombre Disertantes</th>
-                    <th>Hora</th>
-                    <th>Duración</th>
-                    <th>Descripción</th>
-                    <th>Fecha Creación</th>
-                </tr>
+            <table id="tabla-eventos">
             </table>
         </section>
     </section>
