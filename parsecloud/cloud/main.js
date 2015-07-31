@@ -5,14 +5,14 @@ var helpers = require('cloud/helpers.js');
  
 // OBJECT USER
  
-// afterSave: USER -- role setting
+// afterSave: Data validation
 Parse.Cloud.afterSave('Object', function(request) {
   response.success();
 });
  
 // OBJECT MEAL
  
-// beforeSave: MEAL -- Data validation
+// beforeSave: Data validation
 Parse.Cloud.beforeSave('Object', function (request, response) {
   response.success();
 });
