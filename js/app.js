@@ -27,6 +27,7 @@ $('#salir').click(function () {
 
 // Preguntar si hay usuario logeado o no
 showLoginOrBody();
+renderizarTabla();
 
 function login() {
   var usuario = $('#login-username').val();
@@ -117,7 +118,6 @@ function showLoginOrBody() {
   currentUser = Parse.User.current();
 
   if (currentUser) {
-    renderizarTabla();
     $('.parse-body').show();
     $('.parse-login').hide();
   } else {

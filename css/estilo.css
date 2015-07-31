@@ -106,10 +106,6 @@ a.boton:hover {
     color: white;
 }
 
-p {
-    font-family: 'Lato', sans-serif;
-}
-
 h1, h2 {
     font-family: 'Montserrat', sans-serif;
 }
@@ -142,7 +138,7 @@ h1, h2 {
     position: absolute;
 }
 
-.parse-body {
+body {
     font-family: 'Lato', sans-serif;
 }
 
@@ -155,12 +151,12 @@ h1, h2 {
     border: 2px solid black;
     padding: 5px;
     font-weight: bold;
-    font-family: 'Lato', sans-serif;
     border-radius: 3px;
+    width: 250px;
+    font-family: 'Lato', sans-serif;
 }
 
 .form-group button {
-    font-family: 'Lato', sans-serif;
     background-color: white;
     text-decoration: none;
     color: black;
@@ -179,6 +175,10 @@ h1, h2 {
 .form-group button:hover {
     background-color: black;
     color: white;
+}
+
+.section-table {
+    clear: both;
 }
 
 .section-table table {
