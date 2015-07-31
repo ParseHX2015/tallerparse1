@@ -6,14 +6,14 @@ var helpers = require('cloud/helpers.js');
 // OBJECT USER
  
 // afterSave: Data validation
-Parse.Cloud.afterSave('Object', function(request) {
+Parse.Cloud.afterSave('Evento', function(request) {
   response.success();
 });
  
 // OBJECT MEAL
  
 // beforeSave: Data validation
-Parse.Cloud.beforeSave('Object', function (request, response) {
+Parse.Cloud.beforeSave('Evento', function (request, response) {
   response.success();
 });
 
@@ -23,7 +23,7 @@ Parse.Cloud.beforeSave('Object', function (request, response) {
 To Test:
 curl -X POST -H "X-Parse-Application-Id: key" -H "X-Parse-Master-Key: key" -H "Content-Type: application/json" -d "{}" -k https://api.parse.com/1/jobs/aJob
 */
-Parse.Cloud.job("aJob", function(request, status) {  
+Parse.Cloud.job("TestJob", function(request, status) {  
   Parse.Cloud.useMasterKey();
   
   status.success('');
