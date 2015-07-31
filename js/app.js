@@ -118,9 +118,11 @@ function showLoginOrBody() {
   currentUser = Parse.User.current();
 
   if (currentUser) {
+  	$('.boton-inscribir').show();
     $('.parse-body').show();
     $('.parse-login').hide();
   } else {
+  	$('.boton-inscribir').hide();
     $('.parse-login').show();
     $('.parse-body').hide();
   }
@@ -140,6 +142,7 @@ function renderizarTabla() {
 
       for (var i = 0; i < eventos.length; i++) {
         agregarEventoATabla(eventos[i]);
+        agregarEventoLista(i, eventos[i]);
       };
     },
     error: function(object, error) {
@@ -159,4 +162,46 @@ function agregarEventoATabla(evento) {
   $('<td>' + evento.get('Descripcion') + '</td>').appendTo(tr);
   $('<td>' + createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() + '</td>').appendTo(tr);
   $('#tabla-eventos').append(tr);
+}
+
+function agregarEventoLista(i,evento){
+	var div = $('<div class="div-articulo"></div>');
+	if(i%2==0){
+		var art = $('<article class="margen texto-charla flotar-izquierda"></article>');
+		var img = $('<div class="flyer-contenedor">'+ '<img src="img/hellojs.png" class="flyer" />' + '</div>');
+	}
+	else {
+		var art = $('<article class="margen texto-charla flotar-derecha texto-derecha"></article>');
+		var img = $('<div class="flyer-contenedor-derecho">' + '<img src="img/hellojs.png" class="flyer" />' + '</div>');
+	}
+	$('<header><h2>' + evento.get('Nombre') + '</h2></header>').appendTo(art);
+	
+	var charla = $('<section class="contenido"></section>');
+	var charlaDesc = $('<p class="charla-descripcion"></p>');
+	$('<strong>Descripción: ' + evento.get('Descripcion') + '</strong>').appendTo(charlaDesc);
+	$('<p>Disertantes: '+ evento.get('Disertantes') +'</p>').appendTo(charlaDesc);
+	var fechaDate = new Date(evento.get('Fecha'));
+	$('<p>Fecha: '+ fechaDate.getDate() + '/' + (fechaDate.getMonth() + 1) + '/' + fechaDate.getFullYear() +' hs</p>').appendTo(charlaDesc);
+	$('<p>Duración: '+ evento.get('Duracion') +' hs</p>').appendTo(charlaDesc);
+  	var createdAtDate = new Date(evento.createdAt);
+  	$('<p>Creado el: '+ createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() +'</p>').appendTo(charlaDesc);
+  	charlaDesc.appendTo(charla);
+  	charla.appendTo(art);
+  	$('<div class="form-group"><button class="boton boton-inscribir" onclick="inscribirse(' + "\'" + evento.id + "\'" + ')">Inscribirse</button></div>').appendTo(art);
+	var divImg = $('<div class="flyer-alto"></div>');
+	img.appendTo(divImg);
+	
+	div.append(art);
+	div.append(divImg);
+	$('#eventos').append(div);
+	//$('#eventos').append(art);
+	//$('#eventos').append(divImg);
+}
+
+function inscribirse(eventId){
+	var evento = new (Parse.Object.extend('Evento'));
+	evento.set('id',eventId);
+	evento.relation('inscriptos').add(currentUser);
+	evento.save();
+	alert("Te has suscripto correctamente al evento");
 }

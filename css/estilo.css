@@ -59,7 +59,7 @@ hgroup {
 
 .texto-charla {
     width: 30%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .charla-descripcion {
@@ -121,6 +121,7 @@ h1, h2 {
     text-align: center;
     color: #fff;
     position: relative;
+    margin-top: 40px;
 }
 
 .flotar-derecha {
@@ -198,4 +199,8 @@ body {
 .section-table table th {
     background-color: black;
     color: white;
+}
+
+.div-articulo{
+    margin-top: 20px;
 }
