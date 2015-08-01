@@ -112,10 +112,7 @@ function agregarEvento() {
 
   if (fileinput.files.length > 0) {
     var file = fileinput.files[0];
-    var name = fileinput.files[0].name;
-
-    var parseFile = new Parse.File(name, file);
-
+    var parseFile = new Parse.File(file.name, file);
     evento.set('Imagen', parseFile);
   }
 
@@ -134,7 +131,14 @@ function agregarEvento() {
     },
     error: function(evento, error) {
       console.log('Error al crear evento');
-      alert('Failed to create new object, with error code: ' + error.message);
+      switch(error.code){
+        case 142:
+          alert(error.message);
+        break;
+        default:
+          alert("Error al crear el evento");
+        break;
+      } 
       $('#evento-enviar').empty().append('Enviar').prop('disabled', false);
     }
   });
