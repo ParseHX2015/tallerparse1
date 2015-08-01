@@ -225,7 +225,7 @@ function agregarEventoLista(i,evento){
 	$('<strong>Descripción: ' + evento.get('Descripcion') + '</strong>').appendTo(charlaDesc);
 	$('<p>Disertantes: '+ evento.get('Disertantes') +'</p>').appendTo(charlaDesc);
 	var fechaDate = new Date(evento.get('Fecha'));
-	$('<p>Fecha: '+ fechaDate.getDate() + '/' + (fechaDate.getMonth() + 1) + '/' + fechaDate.getFullYear() +' hs</p>').appendTo(charlaDesc);
+	$('<p>Fecha: '+ fechaDate.getDate() + '/' + (fechaDate.getMonth() + 1) + '/' + fechaDate.getFullYear() +'</p>').appendTo(charlaDesc);
 	$('<p>Duración: '+ evento.get('Duracion') +' hs</p>').appendTo(charlaDesc);
   	var createdAtDate = new Date(evento.createdAt);
   	$('<p>Creado el: '+ createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() +'</p>').appendTo(charlaDesc);
