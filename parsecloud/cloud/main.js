@@ -29,9 +29,9 @@ Parse.Cloud.beforeSave('Evento', function (request, response) {
   var evento = request.object;
   var nombre = evento.get('Nombre').trim();
   var disertantes = evento.get('Disertantes').trim();
-  var fecha = evento.get('Fecha').trim();
-  var duracion = evento.get('Duracion').trim();
   var descripcion = evento.get('Descripcion').trim();
+  var fecha = evento.get('Fecha');
+  var duracion = evento.get('Duracion');
 
   if (nombre.length < 3) {
     response.error('El nombre de evento debe tener más de 3 caracteres');
