@@ -3,7 +3,7 @@
 exports.sendEmail = function(toAddress,subject, string, isHtml)
 {
   var Mandrill = require('mandrill');
-  Mandrill.initialize('⁠⁠⁠QCqjJwOnROLLZanWWYE8Eg');
+  Mandrill.initialize('QCqjJwOnROLLZanWWYE8Eg');
   Mandrill.sendEmail({   
     "message": {
       "html" : isHtml ? string : '',
