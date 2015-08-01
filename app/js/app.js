@@ -240,6 +240,7 @@ function agregarEventoLista(i,evento){
 	$('#eventos').append(div);
 	//$('#eventos').append(art);
 	//$('#eventos').append(divImg);
+  $('.boton-inscribir').show();
 }
 
 function inscribirse(eventId){

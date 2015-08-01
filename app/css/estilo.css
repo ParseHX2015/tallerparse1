@@ -85,6 +85,7 @@ hgroup {
 
 .flyer {
     width: 550px;
+    border-radius: 3px;
 }
 
 a.boton {
