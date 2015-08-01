@@ -173,6 +173,10 @@ body {
     transition-timing-function: linear;
 }
 
+.form-group button:disabled {
+    opacity: .5;
+}
+
 .form-group button:hover {
     background-color: black;
     color: white;

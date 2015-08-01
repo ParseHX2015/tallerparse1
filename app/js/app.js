@@ -108,6 +108,19 @@ function agregarEvento() {
   evento.set('Duracion', datos.duracion);
   evento.set('Descripcion', datos.descripcion);
 
+  var fileinput = $('#imagen-evento')[0];
+
+  if (fileinput.files.length > 0) {
+    var file = fileinput.files[0];
+    var name = fileinput.files[0].name;
+
+    var parseFile = new Parse.File(name, file);
+
+    evento.set('Imagen', parseFile);
+  }
+
+  $('#evento-enviar').empty().append('Cargando').prop('disabled', true);
+
   evento.save(null, {
     success: function(evento) {
       $('#nombre-evento').val('');
@@ -116,11 +129,13 @@ function agregarEvento() {
       $('#duracion-evento').val('');
       $('#descripcion-evento').val('');
       agregarEventoATabla(evento);
+      $('#evento-enviar').empty().append('Enviar').prop('disabled', false);
       console.log('Evento Creado');
     },
     error: function(evento, error) {
       console.log('Error al crear evento');
       alert('Failed to create new object, with error code: ' + error.message);
+      $('#evento-enviar').empty().append('Enviar').prop('disabled', false);
     }
   });
 }
