@@ -6,7 +6,7 @@ var helpers = require('cloud/helpers.js');
 // OBJECT USER
 
 Parse.Cloud.beforeSave(Parse.User, function (request, response) {
-  var checkName = /^[a-zA-Z0-9_-\.]+$/;
+  var checkName = /^[a-zA-Z0-9_-]+$/;
   var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
  
   var user = request.object;
