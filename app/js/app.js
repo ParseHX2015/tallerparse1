@@ -126,7 +126,7 @@ function agregarEvento() {
       $('#duracion-evento').val('');
       $('#descripcion-evento').val('');
       $('#evento-enviar').empty().append('Enviar').prop('disabled', false);
-      var izqDer = $('.div-articulo').length - 1
+      var izqDer = $('.div-articulo').length;
       agregarEventoLista(izqDer, evento);
       console.log('Evento Creado');
     },
