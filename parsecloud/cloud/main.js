@@ -15,7 +15,7 @@ Parse.Cloud.beforeSave(Parse.User, function (request, response) {
     var username = usuario.get('username').trim();
     var email = usuario.get('email').trim();
    
-    if (username.length < 4 || username.length > 16 || checkName.test(username)) {
+    if (username.length < 4 || username.length > 16 || !checkName.test(username)) {
       response.error('El nombre de usuario debe tener entre 4 y 16 caracteres y no contener caracteres especiales');
     }
     else if (!emailFormat.test(email)) {
@@ -67,16 +67,18 @@ Parse.Cloud.beforeSave('Evento', function (request, response) {
 // afterSave: Data validation
 Parse.Cloud.afterSave('Evento', function(request) {
   var evento = request.object;
-  var queryUser = new Parse.Query(Parse.User);
-  queryUser.find({
-    success: function (users) {
-      var direcciones = [];
-      for (var i = 0; i < users.length; i++) {
-        direcciones.push({email: users[i].get('email'), name: users[i].get('username')});
+  if (!evento.existed()) {
+    var queryUser = new Parse.Query(Parse.User);
+    queryUser.find({
+      success: function (users) {
+        var direcciones = [];
+        for (var i = 0; i < users.length; i++) {
+          direcciones.push({email: users[i].get('email'), name: users[i].get('username')});
+        }
+        helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
       }
-      helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
-    }
-  });
+    });
+  }
 });
 
 // CLOUD CODE JOBS
