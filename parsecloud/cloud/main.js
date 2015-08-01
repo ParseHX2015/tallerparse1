@@ -9,9 +9,9 @@ Parse.Cloud.beforeSave(Parse.User, function (request, response) {
   var checkName = /^[a-zA-Z0-9_-]+$/;
   var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
  
-  var user = request.object;
-  var username = user.get('username').trim();
-  var email = user.get('email').trim();
+  var usuario = request.object;
+  var username = usuario.get('username').trim();
+  var email = usuario.get('email').trim();
  
   if (username.length < 4 || username.length > 16 || checkName.test(username)) {
     response.error('El nombre de usuario debe tener entre 4 y 16 caracteres y no contener caracteres especiales');
@@ -23,16 +23,49 @@ Parse.Cloud.beforeSave(Parse.User, function (request, response) {
     response.success();
   }
 });
+
+// beforeSave: Data validation
+Parse.Cloud.beforeSave('Evento', function (request, response) {
+  var evento = request.object;
+  var nombre = evento.get('Nombre').trim();
+  var disertantes = evento.get('Disertantes').trim();
+  var descripcion = evento.get('Descripcion').trim();
+  var fecha = evento.get('Fecha');
+  var duracion = evento.get('Duracion');
+
+  if (nombre.length < 3) {
+    response.error('El nombre de evento debe tener más de 3 caracteres');
+  }
+  else if (disertantes.length < 3) {
+    response.error('Debe definir los disertantes del evento');
+  }
+  else if (!fecha) {
+    response.error('La fecha del evento debe estar definida');
+  }
+  else if (!duracion) {
+    response.error('La duración del evento debe estar definida');
+  }
+  else if (descripcion.length < 4) {
+    response.error('La descripcion del evento debe tener más de 4 caracteres');
+  }
+  else {
+    response.success();
+  }
+});
  
 // afterSave: Data validation
 Parse.Cloud.afterSave('Evento', function(request) {
-  response.success();
-});
- 
-// OBJECT MEAL
- 
-// beforeSave: Data validation
-Parse.Cloud.beforeSave('Evento', function (request, response) {
+  var evento = request.object;
+  var queryUser = new Parse.Query(Parse.User);
+  queryUser.find({
+    success: function (users) {
+      var direcciones = [];
+      for (var i = 0; i < users.length; i++) {
+        direcciones.push({email: users[i].get('email'), name: users[i].get('username')});
+      }
+      helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
+    }
+  });
   response.success();
 });
 
