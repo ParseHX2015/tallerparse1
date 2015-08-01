@@ -67,16 +67,18 @@ Parse.Cloud.beforeSave('Evento', function (request, response) {
 // afterSave: Data validation
 Parse.Cloud.afterSave('Evento', function(request) {
   var evento = request.object;
-  var queryUser = new Parse.Query(Parse.User);
-  queryUser.find({
-    success: function (users) {
-      var direcciones = [];
-      for (var i = 0; i < users.length; i++) {
-        direcciones.push({email: users[i].get('email'), name: users[i].get('username')});
+  if (!evento.existed()) {
+    var queryUser = new Parse.Query(Parse.User);
+    queryUser.find({
+      success: function (users) {
+        var direcciones = [];
+        for (var i = 0; i < users.length; i++) {
+          direcciones.push({email: users[i].get('email'), name: users[i].get('username')});
+        }
+        helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
       }
-      helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
-    }
-  });
+    });
+  }
 });
 
 // CLOUD CODE JOBS
