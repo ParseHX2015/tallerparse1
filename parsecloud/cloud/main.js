@@ -66,7 +66,6 @@ Parse.Cloud.afterSave('Evento', function(request) {
       helpers.sendEmail(direcciones,"Taller Parse",'Nuevo Evento creado: '+evento.get('Nombre'),false);
     }
   });
-  response.success();
 });
 
 // CLOUD CODE JOBS
