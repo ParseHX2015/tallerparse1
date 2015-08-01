@@ -4,6 +4,7 @@ Parse.initialize('SurJUfsG3JkChlpYg6BIW9dMwvl8wgDcEZhPJhXR', 'AeiH3QH3vfHbaQ4IUo
 // Inicializar variables
 // Usuario actual
 var currentUser;
+var currentUserData;
 
 // Evento submit
 $('#login-form').submit(function () {
@@ -121,10 +122,19 @@ function showLoginOrBody() {
   	$('.boton-inscribir').show();
     $('.parse-body').show();
     $('.parse-login').hide();
+    currentUser.fetch().then(function (user) {
+      currentUserData = user;
+      $('#user-span').append(currentUserData.get('username'));
+      if (currentUserData.get('isAdmin')) {
+        $('.section-form').show();
+      }
+    });
   } else {
-  	$('.boton-inscribir').hide();
-    $('.parse-login').show();
+    $('#user-span').empty()
+    $('.section-form').hide();
+    $('.boton-inscribir').hide();
     $('.parse-body').hide();
+    $('.parse-login').show();
   }
 }
 
@@ -187,7 +197,7 @@ function agregarEventoLista(i,evento){
   	$('<p>Creado el: '+ createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() +'</p>').appendTo(charlaDesc);
   	charlaDesc.appendTo(charla);
   	charla.appendTo(art);
-  	$('<div class="form-group"><button class="boton boton-inscribir" onclick="inscribirse(' + "\'" + evento.id + "\'" + ')">Inscribirse</button></div>').appendTo(art);
+  	$('<div class="form-group"><button class="boton boton-inscribir" onclick="inscribirse(' + "\'" + evento.id + "\'" + ')" hidden>Inscribirse</button></div>').appendTo(art);
 	var divImg = $('<div class="flyer-alto"></div>');
 	img.appendTo(divImg);
 	

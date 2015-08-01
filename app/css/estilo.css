@@ -178,6 +178,10 @@ body {
     color: white;
 }
 
+.form-group a#salir {
+    float: right;
+}
+
 .section-table {
     clear: both;
 }
