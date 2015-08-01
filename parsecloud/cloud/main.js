@@ -15,7 +15,7 @@ Parse.Cloud.beforeSave(Parse.User, function (request, response) {
     var username = usuario.get('username').trim();
     var email = usuario.get('email').trim();
    
-    if (username.length < 4 || username.length > 16 || checkName.test(username)) {
+    if (username.length < 4 || username.length > 16 || !checkName.test(username)) {
       response.error('El nombre de usuario debe tener entre 4 y 16 caracteres y no contener caracteres especiales');
     }
     else if (!emailFormat.test(email)) {
