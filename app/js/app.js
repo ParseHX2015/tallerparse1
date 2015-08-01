@@ -68,7 +68,17 @@ function signup() {
     },
     error: function(user, error) {
       console.log('signup-error');
-      alert("Error en registro");
+      switch(error.code){
+        case 125:
+          alert("Dirección de correo inválida");
+        break;
+        case 142:
+          alert(error.message);
+        break;
+        default:
+          alert("Error en registro");
+        break;
+      } 
     }
   });
 }
