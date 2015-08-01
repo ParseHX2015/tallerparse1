@@ -125,8 +125,9 @@ function agregarEvento() {
       $('#fecha-evento').val('');
       $('#duracion-evento').val('');
       $('#descripcion-evento').val('');
-      agregarEventoATabla(evento);
       $('#evento-enviar').empty().append('Enviar').prop('disabled', false);
+      var izqDer = $('.div-articulo').length - 1
+      agregarEventoLista(izqDer, evento);
       console.log('Evento Creado');
     },
     error: function(evento, error) {
@@ -180,7 +181,6 @@ function renderizarTabla() {
       tablaEventos.append(encabezadoTabla);
 
       for (var i = 0; i < eventos.length; i++) {
-        agregarEventoATabla(eventos[i]);
         agregarEventoLista(i, eventos[i]);
       };
     },
@@ -190,7 +190,10 @@ function renderizarTabla() {
   });
 }
 
-function agregarEventoATabla(evento) {
+
+function agregarEventoLista(i,evento){
+
+  //agregar a la tabla
   var tr = $('<tr></tr>');
   var fechaDate = new Date(evento.get('Fecha'));
   var createdAtDate = new Date(evento.createdAt);
@@ -201,17 +204,23 @@ function agregarEventoATabla(evento) {
   $('<td>' + evento.get('Descripcion') + '</td>').appendTo(tr);
   $('<td>' + createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() + '</td>').appendTo(tr);
   $('#tabla-eventos').append(tr);
-}
 
-function agregarEventoLista(i,evento){
+  //agregar con imagenes
 	var div = $('<div class="div-articulo"></div>');
+
+  if (evento.get('Imagen')) {
+    var imgSrc = evento.get('Imagen').url();
+  } else {
+    var imgSrc = "img/hellojs.png";
+  }
+
 	if(i%2==0){
 		var art = $('<article class="margen texto-charla flotar-izquierda"></article>');
-		var img = $('<div class="flyer-contenedor">'+ '<img src="img/hellojs.png" class="flyer" />' + '</div>');
+		var img = $('<div class="flyer-contenedor">'+ '<img src="' + imgSrc + '" class="flyer" />' + '</div>');
 	}
 	else {
 		var art = $('<article class="margen texto-charla flotar-derecha texto-derecha"></article>');
-		var img = $('<div class="flyer-contenedor-derecho">' + '<img src="img/hellojs.png" class="flyer" />' + '</div>');
+		var img = $('<div class="flyer-contenedor-derecho">' + '<img src="' + imgSrc + '" class="flyer" />' + '</div>');
 	}
 	$('<header><h2>' + evento.get('Nombre') + '</h2></header>').appendTo(art);
 	
@@ -220,7 +229,7 @@ function agregarEventoLista(i,evento){
 	$('<strong>Descripción: ' + evento.get('Descripcion') + '</strong>').appendTo(charlaDesc);
 	$('<p>Disertantes: '+ evento.get('Disertantes') +'</p>').appendTo(charlaDesc);
 	var fechaDate = new Date(evento.get('Fecha'));
-	$('<p>Fecha: '+ fechaDate.getDate() + '/' + (fechaDate.getMonth() + 1) + '/' + fechaDate.getFullYear() +' hs</p>').appendTo(charlaDesc);
+	$('<p>Fecha: '+ fechaDate.getDate() + '/' + (fechaDate.getMonth() + 1) + '/' + fechaDate.getFullYear() +'</p>').appendTo(charlaDesc);
 	$('<p>Duración: '+ evento.get('Duracion') +' hs</p>').appendTo(charlaDesc);
   	var createdAtDate = new Date(evento.createdAt);
   	$('<p>Creado el: '+ createdAtDate.getDate() + '/' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getFullYear() + ' ' + createdAtDate.getHours() + ':' + (createdAtDate.getMinutes() < 10 ? '0' : '') + createdAtDate.getMinutes() +'</p>').appendTo(charlaDesc);
@@ -235,6 +244,7 @@ function agregarEventoLista(i,evento){
 	$('#eventos').append(div);
 	//$('#eventos').append(art);
 	//$('#eventos').append(divImg);
+  $('.boton-inscribir').show();
 }
 
 function inscribirse(eventId){
